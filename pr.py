@@ -1,3 +1,4 @@
+from igraph import *
 import Sudoku as sd
 
 def list2dic(lista):
@@ -76,4 +77,4 @@ else:
 
 
 
-print('resultado:',x)
+print('resultado:',t_cl)
