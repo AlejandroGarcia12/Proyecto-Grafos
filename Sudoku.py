@@ -209,7 +209,7 @@ def Algoritmo_coloracion4(sudoku):
     #print(vertb)
     #ningun vertice esta en blanco y el sudoku esta completo
     if vertb==-1:
-        
+
         return True, sudoku
         
     for guess in range(1,10):
@@ -322,10 +322,12 @@ numeros=[0,0,0,0,4,0,0,5,0,
         0,8,0,0,5,0,0,0,0]
 """
 
+
 def solver_sudoku(numeros):
 #Ploting del grafo
-    global color_dict
+
     sudoku=grafo_sudoku(numeros)
+    
     sudoku.vs["label"] = ['Σ', 'Τ', 'Υ', 'Φ', 'Χ', 'Ψ', 'Ω', 'Ϊ', 'Ϋ',
                         'ά', 'έ', 'ή', 'ί', 'ΰ', 'α', 'β', 'γ', 'δ',
                         'ε', 'ζ', 'η', 'θ', 'ι', 'κ', 'λ', 'μ', 'ν',
@@ -342,12 +344,12 @@ def solver_sudoku(numeros):
     colores=["pink","green","yellow","red","purple","orange","light blue","dark green","Cadet Blue"]
 
     sudoku,listaSol,val=solve_sudoku(sudoku)
-    color_dict = {"white":0, "pink":1,"green": 2,"yellow":3,"red":4,"purple":5,"orange":6,"light blue":7,"dark green":8,"Cadet Blue":9}
+    color_dict1 = {"white":0, "pink":1,"green": 2,"yellow":3,"red":4,"purple":5,"orange":6,"light blue":7,"dark green":8,"Cadet Blue":9}
 
     t_cl= []
     for i in listaSol:
-        t_cl.append(color_dict.get(i))
-    print(t_cl)
+        t_cl.append(color_dict1.get(i))
+    #print(t_cl)
 
     count=0
     line=0
@@ -363,14 +365,16 @@ def solver_sudoku(numeros):
             if line % 3 == 0 and line != 9:
                 print('------+-------+-------')
             count=0
-    
+    """
     if val:
         plot(sudoku, layout=layout)
     else:
         y=input("p?")
         if y=="y":
             plot(sudoku, layout=layout)
-    """
+
+    
+
     return t_cl
 
 #solver_sudoku(numeros)

@@ -117,8 +117,9 @@ def dif(win,dif):
                 win.blit(value, ((j+1)*50 + 15, (i+1)*50 ))
     pygame.display.update()
 
-def sol(win,dif):
+def sol(dif):
     #FACIL
+
     numeros1=[0,3,9,0,5,0,1,7,0,
             0,0,5,0,6,0,8,0,0,
             8,0,0,4,0,3,0,0,9,
@@ -150,7 +151,7 @@ def sol(win,dif):
             0,5,0,4,0,0,0,8,0,
             0,0,6,2,0,7,5,0,3,
             0,8,0,0,5,0,0,0,0]
-
+    print(dif)
     if dif =='1':
         solu = sd.solver_sudoku(numeros1)
     elif dif == '2':
@@ -161,7 +162,8 @@ def sol(win,dif):
     new = {"board":list2dic(solu)}
     grid = new['board']
     grid_original = [[grid[x][y] for y in range(len(grid[0]))] for x in range(len(grid))]
-    pygame.display.set_caption("Sudoku")
+    win = pygame.display.set_mode((WIDTH, WIDTH))
+    pygame.display.set_caption("Solucion "+diff)
     win.fill(background_color)
     myfont = pygame.font.SysFont('Comic Sans MS', 35)
     
@@ -173,13 +175,35 @@ def sol(win,dif):
         pygame.draw.line(win, (0,0,0), (50 + 50*i, 50), (50 + 50*i ,500 ), 2 )
         pygame.draw.line(win, (0,0,0), (50, 50 + 50*i), (500, 50 + 50*i), 2 )
     pygame.display.update()
-    
+    print(grid)  
+    cont=0
     for i in range(0, len(grid[0])):
         for j in range(0, len(grid[0])):
-            if(0<grid[i][j]<10):
-                value = myfont.render(str(grid[i][j]), True, original_grid_element_color)
-                win.blit(value, ((j+1)*50 + 15, (i+1)*50 ))
+            if dif=="1":
+                if numeros1[cont]==grid[i][j]:
+                    #print(numeros1[cont],grid[i][j])
+                    value = myfont.render(str(grid[i][j]), True, original_grid_element_color)
+                    win.blit(value, ((j+1)*50 + 15, (i+1)*50 ))
+                else:
+                    value = myfont.render(str(grid[i][j]), True, (0,0,0))
+                    win.blit(value, ((j+1)*50 + 15, (i+1)*50 ))
+            elif dif=="2":
+                if numeros2[cont]==grid[i][j]:
+                    value = myfont.render(str(grid[i][j]), True, original_grid_element_color)
+                    win.blit(value, ((j+1)*50 + 15, (i+1)*50 ))
+                else:
+                    value = myfont.render(str(grid[i][j]), True, (0,0,0))
+                    win.blit(value, ((j+1)*50 + 15, (i+1)*50 ))
+            elif dif=="3":
+                if numeros3[cont]==grid[i][j]:
+                    value = myfont.render(str(grid[i][j]), True, original_grid_element_color)
+                    win.blit(value, ((j+1)*50 + 15, (i+1)*50 ))
+                else:
+                    value = myfont.render(str(grid[i][j]), True, (0,0,0))
+                    win.blit(value, ((j+1)*50 + 15, (i+1)*50 ))
+            cont+=1
     pygame.display.update()
+    
 
 
 def main():    
@@ -226,7 +250,7 @@ def main():
                     dif(win,diff)
                     print(diff)
                 if event.key == pygame.K_4:
-                    sol(win,diff)
+                    sol(diff)
                                 
             if event.type == pygame.QUIT:
                 pygame.quit()
