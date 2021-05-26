@@ -1,5 +1,5 @@
 # Proyecto-Grafos
 
-Librerias necesaria:
+Librerias necesarias:
 Igraph
 Pygames
